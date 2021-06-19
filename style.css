@@ -1,3 +1,15 @@
 h1 {
-  color: pink;
+  text-align: center;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+#game-board {
+  border: 2px solid black;
+  height: 600px;
+  width: 600px;
 }
