@@ -10,6 +10,29 @@ h1 {
 
 #game-board {
   border: 2px solid black;
-  height: 600px;
-  width: 600px;
+
+  /* Consider using more flexible values. 
+  Currently set to be easily divisible by 3. */
+  height: 633px;
+  width: 633px;
+}
+
+.board-square {
+  border: 1px solid blue;
+  box-sizing: border-box;
+  display: inline-block;
+
+  /* These values are set to work with the h/w values in #game-board */
+  height: 211px;
+  width: 211px;
+}
+
+.sq-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 10rem;
+  height: 100%;
+  width: 100%;
 }
