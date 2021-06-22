@@ -1,3 +1,15 @@
+:root {
+  /*****
+    TODO: Remove magic numbers to allow game board to be more responsive.
+    Current values are set so everything is easily divisible by 3.
+  */
+  --board-height: 633px;
+  --board-width: 633px;
+
+  --cell-height: 211px;
+  --cell-width: 211px;
+}
+
 h1 {
   text-align: center;
 }
@@ -9,12 +21,9 @@ h1 {
 }
 
 #game-board {
-  border: 2px solid black;
-
-  /* Consider using more flexible values. 
-  Currently set to be easily divisible by 3. */
-  height: 633px;
-  width: 633px;
+  /* border: 1px solid black; */
+  height: var(--board-height);
+  width: var(--board-width);
 }
 
 .board-square {
@@ -22,9 +31,8 @@ h1 {
   box-sizing: border-box;
   display: inline-block;
 
-  /* These values are set to work with the h/w values in #game-board */
-  height: 211px;
-  width: 211px;
+  height: var(--cell-height);
+  width: var(--cell-width);
 }
 
 .sq-text {
