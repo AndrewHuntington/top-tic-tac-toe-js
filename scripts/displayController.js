@@ -1,4 +1,4 @@
-import { game } from "./main.js";
+import game from "./game.js";
 import gameBoard from "./gameBoard.js";
 
 export default (() => {
@@ -43,10 +43,19 @@ export default (() => {
     });
   };
 
+  const displayStartButton = () => {
+    // TODO: display the start button before and after each game
+    const startBtn = document.querySelector("#start-btn");
+    startBtn.addEventListener("click", (e) => {
+      console.log("Hello there!");
+    });
+  };
+
   return {
     displayInitBoardState,
     displayUpdatedBoardState,
     displayPlayerInfo,
     displayPlayerTurn,
+    displayStartButton,
   };
 })();

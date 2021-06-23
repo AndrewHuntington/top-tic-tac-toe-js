@@ -1,4 +1,4 @@
-import { game } from "./main.js";
+import game from "./game.js";
 import displayController from "./displayController.js";
 
 export default (() => {

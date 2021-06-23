@@ -67,6 +67,20 @@ h3 {
   height: 125px;
 }
 
+#btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 400px;
+  width: 100vw;
+}
+
+#start-btn {
+  height: 150px;
+  width: 300px;
+}
+
 .board-square {
   border: 1px solid blue;
   box-sizing: border-box;
@@ -84,4 +98,8 @@ h3 {
   font-size: 10rem;
   height: 100%;
   width: 100%;
+}
+
+.invisible {
+  display: none !important;
 }
