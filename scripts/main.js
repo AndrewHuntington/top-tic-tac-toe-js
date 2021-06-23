@@ -26,12 +26,39 @@ const game = (() => {
 
   const _equalsX = (e) => e === "X";
   const _equalsO = (e) => e === "O";
+  const _equalsEmpty = (e) => e === "&nbsp;";
 
   const checkWin = () => {
     const _winCombo = {
+      // TODO: Finish win conditions
       topRow: gameBoard.currentState.slice(0, 3),
       midRow: gameBoard.currentState.slice(3, 6),
       bottomRow: gameBoard.currentState.slice(6),
+      leftCol: [
+        gameBoard.currentState[0],
+        gameBoard.currentState[3],
+        gameBoard.currentState[6],
+      ],
+      midCol: [
+        gameBoard.currentState[1],
+        gameBoard.currentState[4],
+        gameBoard.currentState[7],
+      ],
+      rightCol: [
+        gameBoard.currentState[2],
+        gameBoard.currentState[5],
+        gameBoard.currentState[8],
+      ],
+      leftDiag: [
+        gameBoard.currentState[0],
+        gameBoard.currentState[4],
+        gameBoard.currentState[8],
+      ],
+      rightDiag: [
+        gameBoard.currentState[2],
+        gameBoard.currentState[4],
+        gameBoard.currentState[6],
+      ],
     };
 
     for (const combo in _winCombo) {
@@ -44,7 +71,12 @@ const game = (() => {
       }
     }
 
-    return false;
+    if (gameBoard.currentState.find(_equalsEmpty) === undefined) {
+      alert("Tie game! Too bad!");
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const changeTurn = (playerTurn) => {
