@@ -92,7 +92,6 @@ export default (() => {
     );
 
     displayController.displayPlayerInfo();
-    console.log("new game", newGame);
     if (newGame) {
       displayController.displayInitBoardState();
       newGame = false;

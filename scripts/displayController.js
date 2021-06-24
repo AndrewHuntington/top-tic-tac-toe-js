@@ -2,11 +2,13 @@ import game from "./game.js";
 import gameBoard from "./gameBoard.js";
 
 export default (() => {
-  // Player info variables
+  // Info area variables
   const _playerInfo = document.querySelector("#player-info");
   const _container = document.querySelector("#container");
+  let _resetBtnCreated,
+    _newGameBtnCreated = false;
 
-  // Board variables
+  // Board area variables
   const _boardArea = document.querySelector("#game-board");
   const _boardState = gameBoard.currentState;
 
@@ -18,6 +20,7 @@ export default (() => {
 
     playerDisplay.innerHTML = `${game.playerX.name} Vs. ${game.playerO.name}`;
     displayPlayerTurn();
+
     _resetButtonController();
     _newGameButtonController();
   };
@@ -32,19 +35,27 @@ export default (() => {
 
   const _resetButtonController = () => {
     const resetBtn = document.querySelector("#reset-btn");
-    resetBtn.addEventListener("click", (e) => {
-      game.reset();
-    });
+    if (!_resetBtnCreated) {
+      resetBtn.addEventListener("click", (e) => {
+        game.reset();
+      });
+
+      _resetBtnCreated = true;
+    }
   };
 
   const _newGameButtonController = () => {
     const newGameBtn = document.querySelector("#new-game-btn");
-    newGameBtn.addEventListener("click", (e) => {
-      _playerInfo.classList.toggle("invisible");
-      _container.classList.toggle("invisible");
-      game.reset();
-      game.start();
-    });
+    if (!_newGameBtnCreated) {
+      newGameBtn.addEventListener("click", (e) => {
+        _playerInfo.classList.toggle("invisible");
+        _container.classList.toggle("invisible");
+        game.reset();
+        game.start();
+      });
+
+      _newGameBtnCreated = true;
+    }
   };
 
   const displayInitBoardState = () => {
