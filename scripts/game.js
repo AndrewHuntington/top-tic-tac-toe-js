@@ -3,11 +3,16 @@ import gameBoard from "./gameBoard.js";
 import displayController from "./displayController.js";
 
 export default (() => {
-  // Run game logic here
   // TODO: Find another way to get player names.
+  // General game variables
   let gameOver = false;
   let playerX, playerO, turn;
 
+  // For use with start()
+  const _playerInfo = document.querySelector("#player-info");
+  const _container = document.querySelector("#container");
+
+  // For use with checkWin()
   const _equalsX = (e) => e === "X";
   const _equalsO = (e) => e === "O";
   const _equalsEmpty = (e) => e === "&nbsp;";
@@ -84,9 +89,24 @@ export default (() => {
         this.turn
       }] goes first!`
     );
+
+    _playerInfo.classList.toggle("invisible");
+    _container.classList.toggle("invisible");
+
     displayController.displayPlayerInfo();
     displayController.displayInitBoardState();
   }
 
-  return { start, turn, changeTurn, playerX, playerO, checkWin, gameOver };
+  function reset() {}
+
+  return {
+    start,
+    reset,
+    turn,
+    changeTurn,
+    playerX,
+    playerO,
+    checkWin,
+    gameOver,
+  };
 })();

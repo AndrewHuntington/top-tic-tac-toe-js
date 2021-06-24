@@ -44,10 +44,11 @@ export default (() => {
   };
 
   const displayStartButton = () => {
-    // TODO: display the start button before and after each game
     const startBtn = document.querySelector("#start-btn");
+    const startBtnContainer = document.querySelector("#start-btn-container");
     startBtn.addEventListener("click", (e) => {
-      console.log("Hello there!");
+      startBtnContainer.classList.toggle("invisible");
+      game.start();
     });
   };
 

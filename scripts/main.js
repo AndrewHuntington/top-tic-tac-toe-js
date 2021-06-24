@@ -14,4 +14,3 @@ import gameBoard from "./gameBoard.js";
 import game from "./game.js";
 
 displayController.displayStartButton();
-// game.start();

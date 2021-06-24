@@ -65,9 +65,10 @@ h3 {
   align-items: center;
 
   height: 125px;
+  margin-bottom: 15px;
 }
 
-#btn-container {
+#start-btn-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,6 +80,11 @@ h3 {
 #start-btn {
   height: 150px;
   width: 300px;
+}
+
+#game-ops-container > button {
+  height: 35px;
+  width: 150px;
 }
 
 .board-square {
