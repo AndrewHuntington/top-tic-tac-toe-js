@@ -6,11 +6,12 @@ export default (() => {
   // TODO: Find another way to get player names.
   // General game variables
   let gameOver = false;
+  let newGame = true;
   let playerX, playerO, turn;
 
   // For use with start()
-  const _playerInfo = document.querySelector("#player-info");
-  const _container = document.querySelector("#container");
+  const playerInfo = document.querySelector("#player-info");
+  const container = document.querySelector("#container");
 
   // For use with checkWin()
   const _equalsX = (e) => e === "X";
@@ -90,17 +91,19 @@ export default (() => {
       }] goes first!`
     );
 
-    _playerInfo.classList.toggle("invisible");
-    _container.classList.toggle("invisible");
-
     displayController.displayPlayerInfo();
-    displayController.displayInitBoardState();
+    console.log("new game", newGame);
+    if (newGame) {
+      displayController.displayInitBoardState();
+      newGame = false;
+    } else {
+      displayController.displayUpdatedBoardState();
+    }
   }
 
   function reset() {
     gameBoard.resetBoard();
     displayController.displayUpdatedBoardState();
-    console.log("current state", gameBoard.currentState);
   }
 
   return {

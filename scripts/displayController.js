@@ -2,17 +2,24 @@ import game from "./game.js";
 import gameBoard from "./gameBoard.js";
 
 export default (() => {
-  // Display game board to index.html
+  // Player info variables
+  const _playerInfo = document.querySelector("#player-info");
+  const _container = document.querySelector("#container");
+
+  // Board variables
   const _boardArea = document.querySelector("#game-board");
   const _boardState = gameBoard.currentState;
 
   const displayPlayerInfo = () => {
-    // Display player names and turn on game screen
+    _playerInfo.classList.toggle("invisible");
+    _container.classList.toggle("invisible");
+
     const playerDisplay = document.querySelector("#player-display");
 
     playerDisplay.innerHTML = `${game.playerX.name} Vs. ${game.playerO.name}`;
     displayPlayerTurn();
-    resetButtonController();
+    _resetButtonController();
+    _newGameButtonController();
   };
 
   const displayPlayerTurn = () => {
@@ -23,10 +30,20 @@ export default (() => {
     } [${game.turn}]`;
   };
 
-  const resetButtonController = () => {
+  const _resetButtonController = () => {
     const resetBtn = document.querySelector("#reset-btn");
     resetBtn.addEventListener("click", (e) => {
       game.reset();
+    });
+  };
+
+  const _newGameButtonController = () => {
+    const newGameBtn = document.querySelector("#new-game-btn");
+    newGameBtn.addEventListener("click", (e) => {
+      _playerInfo.classList.toggle("invisible");
+      _container.classList.toggle("invisible");
+      game.reset();
+      game.start();
     });
   };
 
