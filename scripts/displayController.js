@@ -12,6 +12,7 @@ export default (() => {
 
     playerDisplay.innerHTML = `${game.playerX.name} Vs. ${game.playerO.name}`;
     displayPlayerTurn();
+    resetButtonController();
   };
 
   const displayPlayerTurn = () => {
@@ -20,6 +21,13 @@ export default (() => {
     playerTurn.innerHTML = `Player Turn: ${
       game.turn === "X" ? game.playerX.name : game.playerO.name
     } [${game.turn}]`;
+  };
+
+  const resetButtonController = () => {
+    const resetBtn = document.querySelector("#reset-btn");
+    resetBtn.addEventListener("click", (e) => {
+      game.reset();
+    });
   };
 
   const displayInitBoardState = () => {

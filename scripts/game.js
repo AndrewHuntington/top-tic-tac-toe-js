@@ -97,7 +97,11 @@ export default (() => {
     displayController.displayInitBoardState();
   }
 
-  function reset() {}
+  function reset() {
+    gameBoard.resetBoard();
+    displayController.displayUpdatedBoardState();
+    console.log("current state", gameBoard.currentState);
+  }
 
   return {
     start,
