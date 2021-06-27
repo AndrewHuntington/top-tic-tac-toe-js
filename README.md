@@ -1,6 +1,6 @@
 # TOP Project: Tic Tac Toe
 
-## [Click here to see it live (with code!)](https://codesandbox.io/s/top-tic-tac-toe-js-hfh3t)
+<font size="5">[Click here to see it live (with code!)](https://codesandbox.io/s/top-tic-tac-toe-js-hfh3t)</font>
 
 ## What Is It?
 
