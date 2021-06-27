@@ -1,5 +1,7 @@
 # TOP Project: Tic Tac Toe
 
+## [Click here to see it live (with code!)](https://codesandbox.io/s/top-tic-tac-toe-js-hfh3t)
+
 ## What Is It?
 
 This is a tic tac toe game written in vanilla JavaScript. The user interface was created with HTML and CSS.
