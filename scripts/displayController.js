@@ -18,7 +18,7 @@ export default (() => {
 
     const playerDisplay = document.querySelector("#player-display");
 
-    playerDisplay.innerHTML = `${game.playerX.name} Vs. ${game.playerO.name}`;
+    playerDisplay.innerHTML = `${game.playerX.getName()} Vs. ${game.playerO.getName()}`;
     displayPlayerTurn();
 
     _resetButtonController();
@@ -29,7 +29,7 @@ export default (() => {
     const playerTurn = document.querySelector("#player-turn");
 
     playerTurn.innerHTML = `Player Turn: ${
-      game.turn === "X" ? game.playerX.name : game.playerO.name
+      game.turn === "X" ? game.playerX.getName() : game.playerO.getName()
     } [${game.turn}]`;
   };
 

@@ -1,4 +1,5 @@
 import player from "./player.js";
+import cpuPlayer from "./cpuPlayer.js";
 import gameBoard from "./gameBoard.js";
 import displayController from "./displayController.js";
 
@@ -56,9 +57,9 @@ export default (() => {
         _winCombo[combo].every(_equalsO)
       ) {
         alert(
-          `${this.turn === "X" ? this.playerX.name : this.playerO.name} [${
-            this.turn
-          }] WINS!`
+          `${
+            this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
+          } [${this.turn}] WINS!`
         );
         return true;
       }
@@ -73,7 +74,7 @@ export default (() => {
   }
 
   function changeTurn(playerTurn) {
-    return playerTurn === "X" ? this.playerO.team : this.playerX.team;
+    return playerTurn === "X" ? this.playerO.getTeam() : this.playerX.getTeam();
   }
 
   function start() {
@@ -82,13 +83,18 @@ export default (() => {
     const _nameO = prompt("Please enter the name for who will be O:");
     this.playerX = player(_nameX, "X");
     this.playerO = player(_nameO, "O");
+
+    // Test
+    this.playerCPU = cpuPlayer("Compy", "Y");
+    // End Test
+
     const _randomNum = Math.round(Math.random());
     this.turn = _randomNum === 1 ? "X" : "O";
 
     alert(
-      `${this.turn === "X" ? this.playerX.name : this.playerO.name} [${
-        this.turn
-      }] goes first!`
+      `${
+        this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
+      } [${this.turn}] goes first!`
     );
 
     displayController.displayPlayerInfo();
