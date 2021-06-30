@@ -82,11 +82,11 @@ export default (() => {
     const _nameX = prompt("Please enter the name for who will be X:");
     const _nameO = prompt("Please enter the name for who will be O:");
     this.playerX = player(_nameX, "X");
-    this.playerO = player(_nameO, "O");
-
-    // Test
-    this.playerCPU = cpuPlayer("Compy", "Y");
-    // End Test
+    if (_nameO === "CPU") {
+      this.playerO = cpuPlayer(_nameO, "O");
+    } else {
+      this.playerO = player(_nameO, "O");
+    }
 
     const _randomNum = Math.round(Math.random());
     this.turn = _randomNum === 1 ? "X" : "O";
