@@ -6,9 +6,6 @@
 // * Style (Green motif)
 // * Implement PvP and PvCPU
 
-import player from "./player.js";
 import displayController from "./displayController.js";
-import gameBoard from "./gameBoard.js";
-import game from "./game.js";
 
 displayController.displayStartButton();
