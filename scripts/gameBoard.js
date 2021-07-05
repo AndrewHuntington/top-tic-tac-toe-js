@@ -35,6 +35,10 @@ export default (() => {
         game.gameOver = game.checkWin();
         game.turn = game.changeTurn(game.turn);
         displayController.displayPlayerTurn();
+
+        if (game.playerO.isCPU) {
+          game.playerO.cpuTakeTurn();
+        }
       }
     }
   };

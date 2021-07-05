@@ -4,8 +4,18 @@ import player from "./player.js";
 export default (name, team) => {
   // Inherit from Player
   const prototype = player(name, team);
+  prototype.isCPU = true;
 
-  console.log("My name is", prototype.getName());
-  console.log("My team is", prototype.getTeam());
-  return Object.assign({}, prototype); //add ', {function1, etc...}' after proto
+  //TODO: Pick a random square
+  function cpuTakeTurn() {
+    // Get game board array
+    // Filter out taken squares
+    // Pick random available square
+    // Display on screen
+    // Change turn
+
+    console.log("My turn!");
+  }
+
+  return Object.assign({}, prototype, { cpuTakeTurn });
 };

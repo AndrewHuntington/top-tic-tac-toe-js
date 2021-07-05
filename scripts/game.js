@@ -82,6 +82,8 @@ export default (() => {
     const _nameX = prompt("Please enter the name for who will be X:");
     const _nameO = prompt("Please enter the name for who will be O:");
     this.playerX = player(_nameX, "X");
+
+    //TODO: Implement better way to choose CPU Player
     if (_nameO === "CPU") {
       this.playerO = cpuPlayer(_nameO, "O");
     } else {
