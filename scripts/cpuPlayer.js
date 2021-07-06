@@ -7,6 +7,7 @@ export default (name, team) => {
   // Inherit from Player
   const prototype = player(name, team);
   prototype.isCPU = true;
+  let isThinking = false;
 
   // Used to give a delay to the CPU Player's actions
   const _sleep = (ms) => {
@@ -24,6 +25,7 @@ export default (name, team) => {
   async function cpuTakeTurn() {
     if (game.gameOver) return;
 
+    this.isThinking = true;
     const boardState = gameBoard.currentState;
     const delay = _randomNumber(250, 2000);
     let index = Math.floor(Math.random() * boardState.length);
@@ -32,9 +34,8 @@ export default (name, team) => {
     }
     await _sleep(delay);
     gameBoard.takeTurn(boardState, index);
-
-    console.log("My turn!");
+    this.isThinking = false;
   }
 
-  return Object.assign({}, prototype, { cpuTakeTurn });
+  return Object.assign({}, prototype, { cpuTakeTurn, isThinking });
 };

@@ -64,6 +64,8 @@ export default (() => {
       square.classList.add("board-square");
       square.setAttribute("data-index", index);
       square.addEventListener("click", function () {
+        // Prevent human player from selecting a square while CPU is "thinking"
+        if (game.playerO.isCPU && game.playerO.isThinking) return;
         gameBoard.cellClick(index);
       });
 
