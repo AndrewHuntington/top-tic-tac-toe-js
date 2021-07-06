@@ -9,7 +9,7 @@ export default (() => {
   let gameOver = false;
   let newGame = true;
   let cpuOn = false;
-  let playerX, playerO, turn;
+  let playerX, playerO, turn, winner;
 
   // For use with start()
   const playerInfo = document.querySelector("#player-info");
@@ -57,18 +57,22 @@ export default (() => {
         _winCombo[combo].every(_equalsX) ||
         _winCombo[combo].every(_equalsO)
       ) {
-        alert(
-          `${
-            this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
-          } [${this.turn}] WINS!`
-        );
-        return true;
+        this.winner = this.turn;
+        //TODO: Uncomment
+        // alert(
+        //   `${
+        //     this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
+        //   } [${this.turn}] WINS!`
+        // );
+        return this.winner;
       }
     }
 
     if (gameBoard.currentState.find(_equalsEmpty) === undefined) {
-      alert("Tie game! Too bad!");
-      return true;
+      this.winner = "tie";
+      //TODO: Uncomment
+      // alert("Tie game! Too bad!");
+      return this.winner;
     } else {
       return false;
     }
@@ -93,7 +97,10 @@ export default (() => {
     }
 
     const _randomNum = Math.round(Math.random());
-    this.turn = _randomNum === 1 ? "X" : "O";
+    // this.turn = _randomNum === 1 ? "X" : "O";
+
+    // X always goes first (for debugging)
+    this.turn = "X"; //TODO: remove
 
     alert(
       `${
@@ -121,6 +128,7 @@ export default (() => {
     start,
     reset,
     turn,
+    winner,
     changeTurn,
     playerX,
     playerO,

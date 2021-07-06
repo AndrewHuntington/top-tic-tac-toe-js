@@ -27,9 +27,17 @@ export default (() => {
   const takeTurn = (boardState, index) => {
     boardState[index] = game.turn;
     displayController.displayUpdatedBoardState();
-    game.gameOver = game.checkWin();
+    game.gameOver = !!game.checkWin();
     game.turn = game.changeTurn(game.turn);
     displayController.displayPlayerTurn();
+  };
+
+  const takeMinimaxTurn = (boardState, index) => {
+    boardState[index] = game.turn;
+  };
+
+  const clearCell = (boardState, index) => {
+    boardState[index] = "&nbsp;";
   };
 
   const cellClick = (index) => {
@@ -41,11 +49,22 @@ export default (() => {
         takeTurn(currentState, index);
 
         if (game.playerO.isCPU) {
-          game.playerO.cpuTakeTurn();
+          // CPU chooses random squares
+          // game.playerO.cpuTakeTurn();
+
+          // CPU using minimax algorithm
+          game.playerO.cpuTakeBestTurn();
         }
       }
     }
   };
 
-  return { currentState, resetBoard, cellClick, takeTurn };
+  return {
+    currentState,
+    resetBoard,
+    clearCell,
+    cellClick,
+    takeTurn,
+    takeMinimaxTurn,
+  };
 })();

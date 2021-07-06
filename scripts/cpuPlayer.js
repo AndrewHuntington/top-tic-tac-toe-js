@@ -7,6 +7,7 @@ export default (name, team) => {
   // Inherit from Player
   const prototype = player(name, team);
   prototype.isCPU = true;
+  const boardState = gameBoard.currentState;
   let isThinking = false;
 
   // Used to give a delay to the CPU Player's actions
@@ -26,7 +27,6 @@ export default (name, team) => {
     if (game.gameOver) return;
 
     this.isThinking = true;
-    const boardState = gameBoard.currentState;
     const delay = _randomNumber(250, 2000);
     let index = Math.floor(Math.random() * boardState.length);
     while (boardState[index] !== "&nbsp;") {
@@ -37,5 +37,77 @@ export default (name, team) => {
     this.isThinking = false;
   }
 
-  return Object.assign({}, prototype, { cpuTakeTurn, isThinking });
+  async function cpuTakeBestTurn() {
+    if (game.gameOver) return;
+
+    const delay = _randomNumber(250, 2000);
+    let bestScore = -Infinity;
+    let move;
+    this.isThinking = true;
+
+    await _sleep(delay);
+    boardState.forEach((sq, index) => {
+      if (sq === "&nbsp;") {
+        gameBoard.takeMinimaxTurn(boardState, index);
+        let score = _minimax(boardState, 0, true);
+        gameBoard.clearCell(boardState, index);
+        if (score > bestScore) {
+          bestScore = score;
+          move = index;
+        }
+      }
+    });
+
+    console.log("cpu player", boardState);
+    gameBoard.takeTurn(boardState, move);
+    this.isThinking = false;
+  }
+
+  let _scores = {
+    X: -1,
+    O: 1,
+    tie: 0,
+  };
+
+  function _minimax(board, depth, isMaximizing) {
+    let result = game.checkWin();
+    if (!!result) {
+      return _scores[result];
+    }
+
+    if (isMaximizing) {
+      let bestScore = -Infinity;
+
+      board.forEach((sq, index) => {
+        if (sq === "&nbsp;") {
+          gameBoard.takeMinimaxTurn(board, index);
+          let score = _minimax(board, depth + 1, false);
+          gameBoard.clearCell(board, index);
+          bestScore = Math.max(score, bestScore);
+        }
+      });
+
+      return bestScore;
+    } else {
+      let bestScore = Infinity;
+
+      board.forEach((sq, index) => {
+        if (sq === "&nbsp;") {
+          gameBoard.takeMinimaxTurn(board, index);
+          let score = _minimax(board, depth + 1, true);
+          gameBoard.clearCell(board, index);
+          bestScore = Math.min(score, bestScore);
+        }
+      });
+
+      return bestScore;
+    }
+  }
+
+  return Object.assign({}, prototype, {
+    cpuTakeTurn,
+    cpuTakeBestTurn,
+    isThinking,
+    boardState,
+  });
 };
