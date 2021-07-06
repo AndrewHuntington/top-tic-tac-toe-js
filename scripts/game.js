@@ -8,6 +8,7 @@ export default (() => {
   // General game variables
   let gameOver = false;
   let newGame = true;
+  let cpuOn = false;
   let playerX, playerO, turn;
 
   // For use with start()
@@ -86,6 +87,7 @@ export default (() => {
     //TODO: Implement better way to choose CPU Player
     if (_nameO === "CPU") {
       this.playerO = cpuPlayer(_nameO, "O");
+      cpuOn = true;
     } else {
       this.playerO = player(_nameO, "O");
     }
@@ -101,7 +103,9 @@ export default (() => {
 
     displayController.displayPlayerInfo();
     if (newGame) {
+      if (this.playerO.getName() !== "CPU") cpuOn = false;
       displayController.displayInitBoardState();
+      if (cpuOn && this.turn === "O") this.playerO.cpuTakeTurn();
       newGame = false;
     } else {
       displayController.displayUpdatedBoardState();

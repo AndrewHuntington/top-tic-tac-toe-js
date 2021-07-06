@@ -24,17 +24,21 @@ export default (() => {
     }
   }
 
+  const takeTurn = (boardState, index) => {
+    boardState[index] = game.turn;
+    displayController.displayUpdatedBoardState();
+    game.gameOver = game.checkWin();
+    game.turn = game.changeTurn(game.turn);
+    displayController.displayPlayerTurn();
+  };
+
   const cellClick = (index) => {
     const cellText = document.querySelector(`[data-index="${index}"]`)
       .firstChild.innerHTML;
 
     if (cellText !== "X" && cellText !== "O") {
       if (!game.gameOver) {
-        currentState[index] = game.turn;
-        displayController.displayUpdatedBoardState();
-        game.gameOver = game.checkWin();
-        game.turn = game.changeTurn(game.turn);
-        displayController.displayPlayerTurn();
+        takeTurn(currentState, index);
 
         if (game.playerO.isCPU) {
           game.playerO.cpuTakeTurn();
@@ -43,5 +47,5 @@ export default (() => {
     }
   };
 
-  return { currentState, resetBoard, cellClick };
+  return { currentState, resetBoard, cellClick, takeTurn };
 })();
