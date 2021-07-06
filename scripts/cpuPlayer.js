@@ -22,7 +22,7 @@ export default (name, team) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  //TODO: Implement minimax algorithm to make smarter AI
+  // Will choose a square at random
   async function cpuTakeTurn() {
     if (game.gameOver) return;
 
@@ -37,6 +37,8 @@ export default (name, team) => {
     this.isThinking = false;
   }
 
+  // Will use a minimax algorithm to play a game unwinnable by a human opponent
+  // Can assume the CPU player is always player 'O'
   async function cpuTakeBestTurn() {
     if (game.gameOver) return;
 
