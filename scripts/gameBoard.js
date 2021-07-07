@@ -63,9 +63,7 @@ export default (() => {
   return {
     currentState,
     resetBoard,
-    clearCell,
     cellClick,
     takeTurn,
-    takeMinimaxTurn,
   };
 })();
