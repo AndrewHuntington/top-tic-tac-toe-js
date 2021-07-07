@@ -64,6 +64,11 @@ export default (() => {
         //     this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
         //   } [${this.turn}] WINS!`
         // );
+        console.log(
+          `${
+            this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
+          } [${this.turn}] WINS!`
+        );
         return this.winner;
       }
     }
@@ -72,6 +77,7 @@ export default (() => {
       this.winner = "tie";
       //TODO: Uncomment
       // alert("Tie game! Too bad!");
+      console.log("Tie game! Too bad!");
       return this.winner;
     } else {
       return false;

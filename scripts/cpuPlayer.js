@@ -50,9 +50,9 @@ export default (name, team) => {
     await _sleep(delay);
     boardState.forEach((sq, index) => {
       if (sq === "&nbsp;") {
-        gameBoard.takeMinimaxTurn(boardState, index);
-        let score = _minimax(boardState, 0, true);
-        gameBoard.clearCell(boardState, index);
+        gameBoard.currentState[index] = "O";
+        let score = _minimax(boardState, 0, false);
+        gameBoard.currentState[index] = "&nbsp;";
         if (score > bestScore) {
           bestScore = score;
           move = index;
@@ -60,7 +60,6 @@ export default (name, team) => {
       }
     });
 
-    console.log("cpu player", boardState);
     gameBoard.takeTurn(boardState, move);
     this.isThinking = false;
   }
@@ -82,9 +81,9 @@ export default (name, team) => {
 
       board.forEach((sq, index) => {
         if (sq === "&nbsp;") {
-          gameBoard.takeMinimaxTurn(board, index);
+          gameBoard.currentState[index] = "O";
           let score = _minimax(board, depth + 1, false);
-          gameBoard.clearCell(board, index);
+          gameBoard.currentState[index] = "&nbsp;";
           bestScore = Math.max(score, bestScore);
         }
       });
@@ -95,9 +94,9 @@ export default (name, team) => {
 
       board.forEach((sq, index) => {
         if (sq === "&nbsp;") {
-          gameBoard.takeMinimaxTurn(board, index);
+          gameBoard.currentState[index] = "X";
           let score = _minimax(board, depth + 1, true);
-          gameBoard.clearCell(board, index);
+          gameBoard.currentState[index] = "&nbsp;";
           bestScore = Math.min(score, bestScore);
         }
       });

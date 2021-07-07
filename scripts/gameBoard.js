@@ -32,13 +32,14 @@ export default (() => {
     displayController.displayPlayerTurn();
   };
 
-  const takeMinimaxTurn = (boardState, index) => {
-    boardState[index] = game.turn;
-  };
+  //TODO: Remove
+  // const takeMinimaxTurn = (boardState, index) => {
+  //   boardState[index] = game.turn;
+  // };
 
-  const clearCell = (boardState, index) => {
-    boardState[index] = "&nbsp;";
-  };
+  // const clearCell = (boardState, index) => {
+  //   boardState[index] = "&nbsp;";
+  // };
 
   const cellClick = (index) => {
     const cellText = document.querySelector(`[data-index="${index}"]`)
