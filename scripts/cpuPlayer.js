@@ -60,6 +60,8 @@ export default (name, team) => {
       }
     });
 
+    // Make sure game turn is returned to player O
+    game.turn = "O";
     gameBoard.takeTurn(boardState, move);
     this.isThinking = false;
   }
@@ -71,6 +73,10 @@ export default (name, team) => {
   };
 
   function _minimax(board, depth, isMaximizing) {
+    // change the game turn each for each call of _minimax()
+    game.turn = game.changeTurn(game.turn);
+
+    // check for win after the setting the new turn
     let result = game.checkWin();
     if (!!result) {
       return _scores[result];
