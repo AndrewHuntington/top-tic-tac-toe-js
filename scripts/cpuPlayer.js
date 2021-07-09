@@ -39,81 +39,81 @@ export default (name, team) => {
 
   // Will use a minimax algorithm to play a game unwinnable by a human opponent
   // Can assume the CPU player is always player 'O'
-  async function cpuTakeBestTurn() {
-    if (game.gameOver) return;
+  // Does not currently work
+  // async function cpuTakeBestTurn() {
+  //   if (game.gameOver) return;
 
-    const delay = _randomNumber(250, 2000);
-    let bestScore = -Infinity;
-    let move;
-    this.isThinking = true;
+  //   const delay = _randomNumber(250, 2000);
+  //   let bestScore = -Infinity;
+  //   let move;
+  //   this.isThinking = true;
 
-    await _sleep(delay);
-    boardState.forEach((sq, index) => {
-      if (sq === "&nbsp;") {
-        gameBoard.currentState[index] = "O";
-        let score = _minimax(boardState, 0, false);
-        gameBoard.currentState[index] = "&nbsp;";
-        if (score > bestScore) {
-          bestScore = score;
-          move = index;
-        }
-      }
-    });
+  //   await _sleep(delay);
+  //   boardState.forEach((sq, index) => {
+  //     if (sq === "&nbsp;") {
+  //       gameBoard.currentState[index] = "O";
+  //       let score = _minimax(boardState, 0, false);
+  //       gameBoard.currentState[index] = "&nbsp;";
+  //       if (score > bestScore) {
+  //         bestScore = score;
+  //         move = index;
+  //       }
+  //     }
+  //   });
 
-    // Make sure game turn is returned to player O
-    game.turn = "O";
-    gameBoard.takeTurn(boardState, move);
-    this.isThinking = false;
-  }
+  //   // Make sure game turn is returned to player O
+  //   game.turn = "O";
+  //   gameBoard.takeTurn(boardState, move);
+  //   this.isThinking = false;
+  // }
 
-  let _scores = {
-    X: -1,
-    O: 1,
-    tie: 0,
-  };
+  // let _scores = {
+  //   X: -1,
+  //   O: 1,
+  //   tie: 0,
+  // };
 
-  function _minimax(board, depth, isMaximizing) {
-    // change the game turn each for each call of _minimax()
-    game.turn = game.changeTurn(game.turn);
+  // function _minimax(board, depth, isMaximizing) {
+  //   // change the game turn each for each call of _minimax()
+  //   game.turn = game.changeTurn(game.turn);
 
-    // check for win after the setting the new turn
-    let result = game.checkWin();
-    if (!!result) {
-      return _scores[result];
-    }
+  //   // check for win after the setting the new turn
+  //   let result = game.checkWin();
+  //   if (!!result) {
+  //     return _scores[result];
+  //   }
 
-    if (isMaximizing) {
-      let bestScore = -Infinity;
+  //   if (isMaximizing) {
+  //     let bestScore = -Infinity;
 
-      board.forEach((sq, index) => {
-        if (sq === "&nbsp;") {
-          gameBoard.currentState[index] = "O";
-          let score = _minimax(board, depth + 1, false);
-          gameBoard.currentState[index] = "&nbsp;";
-          bestScore = Math.max(score, bestScore);
-        }
-      });
+  //     board.forEach((sq, index) => {
+  //       if (sq === "&nbsp;") {
+  //         gameBoard.currentState[index] = "O";
+  //         let score = _minimax(board, depth + 1, false);
+  //         gameBoard.currentState[index] = "&nbsp;";
+  //         bestScore = Math.max(score, bestScore);
+  //       }
+  //     });
 
-      return bestScore;
-    } else {
-      let bestScore = Infinity;
+  //     return bestScore;
+  //   } else {
+  //     let bestScore = Infinity;
 
-      board.forEach((sq, index) => {
-        if (sq === "&nbsp;") {
-          gameBoard.currentState[index] = "X";
-          let score = _minimax(board, depth + 1, true);
-          gameBoard.currentState[index] = "&nbsp;";
-          bestScore = Math.min(score, bestScore);
-        }
-      });
+  //     board.forEach((sq, index) => {
+  //       if (sq === "&nbsp;") {
+  //         gameBoard.currentState[index] = "X";
+  //         let score = _minimax(board, depth + 1, true);
+  //         gameBoard.currentState[index] = "&nbsp;";
+  //         bestScore = Math.min(score, bestScore);
+  //       }
+  //     });
 
-      return bestScore;
-    }
-  }
+  //     return bestScore;
+  //   }
+  // }
 
   return Object.assign({}, prototype, {
     cpuTakeTurn,
-    cpuTakeBestTurn,
     isThinking,
     boardState,
   });

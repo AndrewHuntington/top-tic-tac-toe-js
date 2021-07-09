@@ -1,16 +1,21 @@
-:root {
-  /*****
-    TODO: Remove magic numbers to allow game board to be more responsive.
-    Current values are set so everything is easily divisible by 3.
-  */
-  --board-height: 522px;
-  --board-width: 522px;
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
-  --cell-height: 174px;
-  --cell-width: 174px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --board-height: 450px;
+  --board-width: 450px;
+
+  --cell-height: calc(var(--board-height) / 3);
+  --cell-width: calc(var(--board-width) / 3);
 }
 
 html {
+  font-family: "Press Start 2P", cursive;
   font-size: 16px;
 }
 
@@ -53,7 +58,6 @@ h3 {
 }
 
 #game-board {
-  /* border: 1px solid black; */
   height: var(--board-height);
   width: var(--board-width);
 }
@@ -89,7 +93,6 @@ h3 {
 
 .board-square {
   border: 1px solid blue;
-  box-sizing: border-box;
   display: inline-block;
 
   height: var(--cell-height);
@@ -101,7 +104,7 @@ h3 {
   justify-content: center;
   align-items: center;
 
-  font-size: 10rem;
+  font-size: 5rem;
   height: 100%;
   width: 100%;
 }

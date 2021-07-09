@@ -42,10 +42,10 @@ export default (() => {
 
         if (game.playerO.isCPU) {
           // CPU chooses random squares
-          // game.playerO.cpuTakeTurn();
+          game.playerO.cpuTakeTurn();
 
-          // CPU using minimax algorithm
-          game.playerO.cpuTakeBestTurn();
+          // // CPU using minimax algorithm
+          // game.playerO.cpuTakeBestTurn();
         }
       }
     }

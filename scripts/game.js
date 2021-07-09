@@ -58,26 +58,28 @@ export default (() => {
         _winCombo[combo].every(_equalsO)
       ) {
         this.winner = this.turn;
-        //TODO: Uncomment
-        // alert(
-        //   `${
-        //     this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
-        //   } [${this.turn}] WINS!`
-        // );
-        console.log(
+        // TODO: Remove alert and display info on page
+        alert(
           `${
             this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
           } [${this.turn}] WINS!`
         );
+        // TODO: Remove (For debugging only)
+        // console.log(
+        //   `${
+        //     this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
+        //   } [${this.turn}] WINS!`
+        // );
         return this.winner;
       }
     }
 
     if (gameBoard.currentState.find(_equalsEmpty) === undefined) {
       this.winner = "tie";
-      //TODO: Uncomment
-      // alert("Tie game! Too bad!");
-      console.log("Tie game! Too bad!");
+      // TODO: Change like above
+      alert("Tie game! Too bad!");
+      // TODO: Remove (For debugging only)
+      // console.log("Tie game! Too bad!");
       return this.winner;
     } else {
       return false;
@@ -103,10 +105,10 @@ export default (() => {
     }
 
     const _randomNum = Math.round(Math.random());
-    // this.turn = _randomNum === 1 ? "X" : "O";
+    this.turn = _randomNum === 1 ? "X" : "O";
 
-    // X always goes first (for debugging)
-    this.turn = "X"; //TODO: remove
+    // // X always goes first (for debugging)
+    // this.turn = "X";
 
     alert(
       `${
