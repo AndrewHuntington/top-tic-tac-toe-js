@@ -4,11 +4,10 @@ import gameBoard from "./gameBoard.js";
 import displayController from "./displayController.js";
 
 export default (() => {
-  // TODO: Find another way to get player names.
   // General game variables
   let gameOver = false;
-  let newGame = true;
   let cpuOn = false;
+  let firstGame = true;
   let playerX, playerO, turn, winner;
 
   // For use with start()
@@ -52,31 +51,22 @@ export default (() => {
       ],
     };
 
+    const winMsg = document.querySelector("#winning-player");
     for (const combo in winCombo) {
       if (winCombo[combo].every(equalsX) || winCombo[combo].every(equalsO)) {
         this.winner = this.turn;
-        // TODO: Remove alert and display info on page
-        alert(
-          `${
-            this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
-          } [${this.turn}] WINS!`
-        );
-        // TODO: Remove (For debugging only)
-        // console.log(
-        //   `${
-        //     this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
-        //   } [${this.turn}] WINS!`
-        // );
+        displayController.displayWinScreen();
+        winMsg.innerHTML = `${
+          this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
+        } [${this.turn}] WINS!`;
         return this.winner;
       }
     }
 
     if (gameBoard.currentState.find(equalsEmpty) === undefined) {
       this.winner = "tie";
-      // TODO: Change like above
-      alert("Tie game! Too bad!");
-      // TODO: Remove (For debugging only)
-      // console.log("Tie game! Too bad!");
+      displayController.displayWinScreen();
+      winMsg.innerHTML = "Tie game! Too bad!";
       return this.winner;
     } else {
       return false;
@@ -87,14 +77,12 @@ export default (() => {
     return playerTurn === "X" ? this.playerO.getTeam() : this.playerX.getTeam();
   }
 
-  function start() {
+  function setPlayers() {
     const nameX = document.querySelector("#player-x-name").value;
     const nameO = document.querySelector("#player-o-name").value;
     const cpuCheckbox = document.querySelector("#cpu-check");
     this.playerX = player(nameX, "X");
 
-    //TODO: Implement better way to choose CPU Player
-    console.log("checked", cpuCheckbox.checked);
     if (cpuCheckbox.checked) {
       this.playerO = cpuPlayer(nameO, "O");
       cpuOn = true;
@@ -104,25 +92,21 @@ export default (() => {
 
     const randomNum = Math.round(Math.random());
     this.turn = randomNum === 1 ? "X" : "O";
+  }
 
-    // // X always goes first (for debugging)
-    // this.turn = "X";
+  function getPlayers() {
+    return { playerX: this.playerX, playerO: this.playerO };
+  }
 
-    alert(
-      `${
-        this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
-      } [${this.turn}] goes first!`
-    );
-
+  function start() {
     displayController.displayPlayerInfo();
-    if (newGame) {
-      if (this.playerO.getName() !== "CPU") cpuOn = false;
+    console.log("O name", this.playerO.getName());
+    if (this.playerO.getName() !== "CPU") cpuOn = false;
+    if (firstGame) {
       displayController.displayInitBoardState();
-      if (cpuOn && this.turn === "O") this.playerO.cpuTakeTurn();
-      newGame = false;
-    } else {
-      displayController.displayUpdatedBoardState();
+      firstGame = false;
     }
+    if (cpuOn && this.turn === "O") this.playerO.cpuTakeTurn();
   }
 
   function reset() {
@@ -140,5 +124,7 @@ export default (() => {
     playerO,
     checkWin,
     gameOver,
+    setPlayers,
+    getPlayers,
   };
 })();

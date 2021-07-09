@@ -5,12 +5,16 @@ export default (() => {
   // Info area variables
   const _playerInfo = document.querySelector("#player-info");
   const _container = document.querySelector("#container");
-  let _resetBtnCreated,
-    _newGameBtnCreated = false;
 
   // Board area variables
   const _boardArea = document.querySelector("#game-board");
   const _boardState = gameBoard.currentState;
+
+  // Other commonly used variables
+  const _winScreen = document.querySelector("#win-screen");
+  const _title = document.querySelector("#title");
+  const _inputScreen = document.querySelector("#input-screen");
+  let _startTurnButtonCreated, _checkboxCreated;
 
   const displayPlayerInfo = () => {
     _playerInfo.classList.toggle("invisible");
@@ -20,9 +24,6 @@ export default (() => {
 
     playerDisplay.innerHTML = `${game.playerX.getName()} Vs. ${game.playerO.getName()}`;
     displayPlayerTurn();
-
-    _resetButtonController();
-    _newGameButtonController();
   };
 
   const displayPlayerTurn = () => {
@@ -31,31 +32,6 @@ export default (() => {
     playerTurn.innerHTML = `Player Turn: ${
       game.turn === "X" ? game.playerX.getName() : game.playerO.getName()
     } [${game.turn}]`;
-  };
-
-  const _resetButtonController = () => {
-    const resetBtn = document.querySelector("#reset-btn");
-    if (!_resetBtnCreated) {
-      resetBtn.addEventListener("click", (e) => {
-        game.reset();
-      });
-
-      _resetBtnCreated = true;
-    }
-  };
-
-  const _newGameButtonController = () => {
-    const newGameBtn = document.querySelector("#new-game-btn");
-    if (!_newGameBtnCreated) {
-      newGameBtn.addEventListener("click", (e) => {
-        _playerInfo.classList.toggle("invisible");
-        _container.classList.toggle("invisible");
-        game.reset();
-        game.start();
-      });
-
-      _newGameBtnCreated = true;
-    }
   };
 
   const displayInitBoardState = () => {
@@ -81,39 +57,94 @@ export default (() => {
     });
   };
 
-  const displayStartButton = () => {
-    const startBtn = document.querySelector("#start-btn");
+  const _gameSetup = () => {
     const welcomeScreen = document.querySelector("#welcome-screen");
     let xInput = document.querySelector("#player-x-name");
     let oInput = document.querySelector("#player-o-name");
     const cpuCheckbox = document.querySelector("#cpu-check");
+
+    welcomeScreen.classList.add("invisible");
+    _inputScreen.classList.toggle("invisible");
+    _title.innerHTML = "Register your information:";
+    xInput.value = "";
+    oInput.value = "";
+    oInput.disabled = false;
+    cpuCheckbox.checked = false;
+  };
+
+  const _displayCPUCheckbox = () => {
+    const cpuCheckbox = document.querySelector("#cpu-check");
+    const oInput = document.querySelector("#player-o-name");
+    oInput.disabled = false;
+
+    if (!_checkboxCreated) {
+      cpuCheckbox.addEventListener("click", (e) => {
+        oInput.disabled = !oInput.disabled;
+        if (oInput.disabled) oInput.value = "CPU";
+        if (!oInput.disabled) oInput.value = "";
+      });
+      _checkboxCreated = true;
+    }
+  };
+
+  const displayStartButton = () => {
+    const startBtn = document.querySelector("#start-btn");
     startBtn.addEventListener("click", (e) => {
-      welcomeScreen.classList.toggle("invisible");
-      xInput.value = "";
-      oInput.value = "";
-      cpuCheckbox.checked = false;
+      _displayCPUCheckbox();
+      _gameSetup();
     });
   };
 
   const displayPlayButton = () => {
     const playBtn = document.querySelector("#play-btn");
-    const inputScreen = document.querySelector("#input-screen");
+    const turnNotificationArea = document.querySelector("#turn-notification");
 
     playBtn.addEventListener("click", (e) => {
-      inputScreen.classList.toggle("invisible");
-      game.start();
+      game.setPlayers();
+      _inputScreen.classList.toggle("invisible");
+      _title.innerHTML = "Tic-Tac-Toe!";
+      turnNotificationArea.classList.toggle("invisible");
+      displayStartTurnButton();
+      _startTurnButtonCreated = true;
     });
   };
 
-  const displayCPUCheckbox = () => {
-    const cpuCheckbox = document.querySelector("#cpu-check");
-    const oInput = document.querySelector("#player-o-name");
-    oInput.disabled = false;
+  const displayStartTurnButton = () => {
+    const turnNotificationArea = document.querySelector("#turn-notification");
+    const startTurnBrn = document.querySelector("#turn-start-btn");
+    const turnMsg = document.querySelector("#starting-turn");
+    const { playerX, playerO } = game.getPlayers();
 
-    cpuCheckbox.addEventListener("click", (e) => {
-      oInput.disabled = !oInput.disabled;
-      if (oInput.disabled) oInput.value = "CPU";
-      if (!oInput.disabled) oInput.value = "";
+    turnMsg.innerHTML = `${
+      game.turn === "X" ? playerX.getName() : playerO.getName()
+    } [${game.turn}] goes first!`;
+
+    if (!_startTurnButtonCreated) {
+      startTurnBrn.addEventListener("click", (e) => {
+        _title.classList.toggle("position-abs");
+        title.classList.toggle("position-rel");
+        turnNotificationArea.classList.toggle("invisible");
+        game.start();
+      });
+    }
+  };
+
+  const displayWinScreen = () => {
+    _winScreen.classList.toggle("invisible");
+    _title.innerHTML = "GAME OVER";
+  };
+
+  const displayReplayBtn = () => {
+    const replayBtn = document.querySelector("#replay-btn");
+
+    replayBtn.addEventListener("click", (e) => {
+      _playerInfo.classList.toggle("invisible");
+      _container.classList.toggle("invisible");
+      _winScreen.classList.toggle("invisible");
+      game.reset();
+      _title.classList.toggle("position-abs");
+      _title.classList.toggle("position-rel");
+      _gameSetup();
     });
   };
 
@@ -124,6 +155,9 @@ export default (() => {
     displayPlayerTurn,
     displayStartButton,
     displayPlayButton,
-    displayCPUCheckbox,
+    displayWinScreen,
+    displayReplayBtn,
+    displayStartButton,
+    displayStartTurnButton,
   };
 })();

@@ -10,16 +10,14 @@
     <title>TOP: Tic Tac Toe</title>
   </head>
   <body>
+    <h1 id="title" class="position-abs">Welcome to Tic-Tac-Toe!</h1>
     <div id="welcome-screen">
-      <h1 id="title">Welcome to Tic-Tac-Toe!</h1>
-
       <div id="start-btn-container">
         <button id="start-btn">Game Start</button>
       </div>
     </div>
 
-    <div id="input-screen">
-      <!-- <h1 id="title">Enter your name:</h1> -->
+    <div id="input-screen" class="invisible">
       <div id="form-area" class="box">
         <div class="field">
           <label class="label">Player X</label>
@@ -64,18 +62,33 @@
       </div>
     </div>
 
-    <div id="player-info" class="invisible">
-      <h1 id="">Tic-Tac-Toe!</h1>
-      <h2 id="player-display"></h2>
-      <h3 id="player-turn"></h3>
-      <div id="game-ops-container">
-        <button id="reset-btn">Reset</button>
-        <button id="new-game-btn">New Game</button>
+    <div id="turn-notification" class="invisible">
+      <div id="turn-content">
+        <h3 id="starting-turn"></h3>
+        <div id="turn-start-btn-wrapper">
+          <button id="turn-start-btn">START</button>
+        </div>
       </div>
     </div>
 
+    <div id="player-info" class="invisible">
+      <h2 id="player-display"></h2>
+      <h3 id="player-turn"></h3>
+    </div>
+
     <div id="container" class="invisible">
-      <div id="game-board"></div>
+      <div id="board-border">
+        <div id="game-board"></div>
+      </div>
+    </div>
+
+    <div id="win-screen" class="invisible">
+      <div id="win-content">
+        <h3 id="winning-player"></h3>
+        <div id="replay-btn-wrapper">
+          <button id="replay-btn">Play Again</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
