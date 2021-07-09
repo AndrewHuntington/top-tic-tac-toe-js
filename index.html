@@ -27,6 +27,7 @@
             <input
               class="input"
               type="text"
+              id="player-x-name"
               placeholder="Please enter a name for 'X'"
             />
           </div>
@@ -38,6 +39,7 @@
             <input
               class="input"
               type="text"
+              id="player-o-name"
               placeholder="Please enter a name for 'O'"
             />
           </div>
@@ -46,15 +48,17 @@
         <div id="field">
           <div id="control">
             <label class="checkbox">
-              <input type="checkbox" />
+              <input type="checkbox" id="cpu-check" />
               Play vs. CPU
             </label>
           </div>
         </div>
 
-        <div class="field" id="play-btn">
+        <div class="field" id="play-btn-area">
           <p class="control">
-            <button class="button is-light is-fullwidth">Game Start</button>
+            <button class="button is-light is-fullwidth" id="play-btn">
+              Game Start
+            </button>
           </p>
         </div>
       </div>

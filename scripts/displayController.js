@@ -84,9 +84,36 @@ export default (() => {
   const displayStartButton = () => {
     const startBtn = document.querySelector("#start-btn");
     const welcomeScreen = document.querySelector("#welcome-screen");
+    let xInput = document.querySelector("#player-x-name");
+    let oInput = document.querySelector("#player-o-name");
+    const cpuCheckbox = document.querySelector("#cpu-check");
     startBtn.addEventListener("click", (e) => {
       welcomeScreen.classList.toggle("invisible");
+      xInput.value = "";
+      oInput.value = "";
+      cpuCheckbox.checked = false;
+    });
+  };
+
+  const displayPlayButton = () => {
+    const playBtn = document.querySelector("#play-btn");
+    const inputScreen = document.querySelector("#input-screen");
+
+    playBtn.addEventListener("click", (e) => {
+      inputScreen.classList.toggle("invisible");
       game.start();
+    });
+  };
+
+  const displayCPUCheckbox = () => {
+    const cpuCheckbox = document.querySelector("#cpu-check");
+    const oInput = document.querySelector("#player-o-name");
+    oInput.disabled = false;
+
+    cpuCheckbox.addEventListener("click", (e) => {
+      oInput.disabled = !oInput.disabled;
+      if (oInput.disabled) oInput.value = "CPU";
+      if (!oInput.disabled) oInput.value = "";
     });
   };
 
@@ -96,5 +123,7 @@ export default (() => {
     displayPlayerInfo,
     displayPlayerTurn,
     displayStartButton,
+    displayPlayButton,
+    displayCPUCheckbox,
   };
 })();

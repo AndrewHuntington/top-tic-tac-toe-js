@@ -16,11 +16,11 @@
 }
 
 html {
-  font-family: "Press Start 2P", cursive;
   font-size: 16px;
 }
 
 body {
+  font-family: "Press Start 2P", cursive;
   margin: 0;
   height: 100vh;
   background-image: linear-gradient(
@@ -72,7 +72,7 @@ h3 {
 }
 
 #form-area {
-  font-family: "Press Start 2P", cursive;
+  font-family: inherit;
   background-color: white;
   height: 300px;
   width: 400px;
@@ -83,11 +83,11 @@ h3 {
   font-size: 0.8rem;
 }
 
-#play-btn {
+#play-btn-area {
   margin-top: 30px;
 }
 
-#play-btn button {
+#play-btn {
   font-family: inherit;
 }
 

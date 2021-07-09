@@ -16,12 +16,12 @@ export default (() => {
   const container = document.querySelector("#container");
 
   // For use with checkWin()
-  const _equalsX = (e) => e === "X";
-  const _equalsO = (e) => e === "O";
-  const _equalsEmpty = (e) => e === "&nbsp;";
+  const equalsX = (e) => e === "X";
+  const equalsO = (e) => e === "O";
+  const equalsEmpty = (e) => e === "&nbsp;";
 
   function checkWin() {
-    const _winCombo = {
+    const winCombo = {
       topRow: gameBoard.currentState.slice(0, 3),
       midRow: gameBoard.currentState.slice(3, 6),
       bottomRow: gameBoard.currentState.slice(6),
@@ -52,11 +52,8 @@ export default (() => {
       ],
     };
 
-    for (const combo in _winCombo) {
-      if (
-        _winCombo[combo].every(_equalsX) ||
-        _winCombo[combo].every(_equalsO)
-      ) {
+    for (const combo in winCombo) {
+      if (winCombo[combo].every(equalsX) || winCombo[combo].every(equalsO)) {
         this.winner = this.turn;
         // TODO: Remove alert and display info on page
         alert(
@@ -74,7 +71,7 @@ export default (() => {
       }
     }
 
-    if (gameBoard.currentState.find(_equalsEmpty) === undefined) {
+    if (gameBoard.currentState.find(equalsEmpty) === undefined) {
       this.winner = "tie";
       // TODO: Change like above
       alert("Tie game! Too bad!");
@@ -91,21 +88,22 @@ export default (() => {
   }
 
   function start() {
-    //TODO: Change from using an alert
-    const _nameX = prompt("Please enter the name for who will be X:");
-    const _nameO = prompt("Please enter the name for who will be O:");
-    this.playerX = player(_nameX, "X");
+    const nameX = document.querySelector("#player-x-name").value;
+    const nameO = document.querySelector("#player-o-name").value;
+    const cpuCheckbox = document.querySelector("#cpu-check");
+    this.playerX = player(nameX, "X");
 
     //TODO: Implement better way to choose CPU Player
-    if (_nameO === "CPU") {
-      this.playerO = cpuPlayer(_nameO, "O");
+    console.log("checked", cpuCheckbox.checked);
+    if (cpuCheckbox.checked) {
+      this.playerO = cpuPlayer(nameO, "O");
       cpuOn = true;
     } else {
-      this.playerO = player(_nameO, "O");
+      this.playerO = player(nameO, "O");
     }
 
-    const _randomNum = Math.round(Math.random());
-    this.turn = _randomNum === 1 ? "X" : "O";
+    const randomNum = Math.round(Math.random());
+    this.turn = randomNum === 1 ? "X" : "O";
 
     // // X always goes first (for debugging)
     // this.turn = "X";

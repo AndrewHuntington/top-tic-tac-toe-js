@@ -9,3 +9,5 @@
 import displayController from "./displayController.js";
 
 displayController.displayStartButton();
+displayController.displayPlayButton();
+displayController.displayCPUCheckbox();
