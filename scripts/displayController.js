@@ -83,9 +83,9 @@ export default (() => {
 
   const displayStartButton = () => {
     const startBtn = document.querySelector("#start-btn");
-    const startBtnContainer = document.querySelector("#start-btn-container");
+    const welcomeScreen = document.querySelector("#welcome-screen");
     startBtn.addEventListener("click", (e) => {
-      startBtnContainer.classList.toggle("invisible");
+      welcomeScreen.classList.toggle("invisible");
       game.start();
     });
   };

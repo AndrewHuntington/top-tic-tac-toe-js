@@ -17,10 +17,26 @@ html {
   font-size: 16px;
 }
 
+body {
+  margin: 0;
+  height: 100vh;
+  background-image: linear-gradient(
+    darkgreen 35%,
+    green 35%,
+    green 65%,
+    khaki 65%,
+    khaki 75%,
+    brown 75%,
+    brown 85%,
+    black 85%
+  );
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
 h1 {
   text-align: center;
   font-size: 2em;
-  margin: 0.67em;
 }
 
 h2 {
@@ -39,8 +55,14 @@ h3 {
   font-weight: bold;
 }
 
+#welcome-screen {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 #title {
   margin-bottom: 0;
+  font-size: 3.5rem;
 }
 
 #player-display {
@@ -57,6 +79,7 @@ h3 {
 #game-board {
   height: var(--board-size);
   width: var(--board-size);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #player-info {
@@ -66,7 +89,7 @@ h3 {
   align-items: center;
 
   height: 125px;
-  margin-bottom: 15px;
+  margin: 35px 0;
 }
 
 #start-btn-container {
@@ -79,8 +102,17 @@ h3 {
 }
 
 #start-btn {
+  border: none;
+  font-family: inherit;
+  font-size: 2.5rem;
+  background-color: rgb(231, 230, 230);
   height: 150px;
   width: 300px;
+}
+
+#start-btn:hover {
+  cursor: pointer;
+  background-color: white;
 }
 
 #game-ops-container > button {
