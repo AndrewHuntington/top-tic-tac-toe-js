@@ -7,11 +7,9 @@
 }
 
 :root {
-  --board-height: 450px;
-  --board-width: 450px;
-
-  --cell-height: calc(var(--board-height) / 3);
-  --cell-width: calc(var(--board-width) / 3);
+  --board-size: 450px;
+  --cell-size: calc(var(--board-size) / 3);
+  --mark-size: calc(var(--cell-size) * 0.8);
 }
 
 html {
@@ -52,14 +50,13 @@ h3 {
 #container {
   display: flex;
   justify-content: center;
-
-  margin-bottom: 30px;
+  margin: 40px 0;
   width: 100vw;
 }
 
 #game-board {
-  height: var(--board-height);
-  width: var(--board-width);
+  height: var(--board-size);
+  width: var(--board-size);
 }
 
 #player-info {
@@ -92,19 +89,48 @@ h3 {
 }
 
 .board-square {
-  border: 1px solid blue;
+  border: 3px solid black;
   display: inline-block;
 
-  height: var(--cell-height);
-  width: var(--cell-width);
+  height: var(--cell-size);
+  width: var(--cell-size);
+}
+
+.board-square:first-child,
+.board-square:nth-child(2),
+.board-square:nth-child(3) {
+  border-top: none;
+}
+
+.board-square:first-child,
+.board-square:nth-child(4),
+.board-square:nth-child(7) {
+  border-left: none;
+}
+
+.board-square:nth-child(7),
+.board-square:nth-child(8),
+.board-square:nth-child(9) {
+  border-bottom: none;
+}
+
+.board-square:nth-child(3),
+.board-square:nth-child(6),
+.board-square:nth-child(9) {
+  border-right: none;
 }
 
 .sq-text {
   display: flex;
   justify-content: center;
+  align-content: center;
   align-items: center;
+  position: relative;
+  top: 10px;
+  left: 5px;
 
-  font-size: 5rem;
+  font-size: var(--mark-size);
+  line-height: 0;
   height: 100%;
   width: 100%;
 }
