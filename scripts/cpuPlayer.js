@@ -34,6 +34,7 @@ export default (name, team) => {
     }
     await _sleep(delay);
     gameBoard.takeTurn(boardState, index);
+    game.audio.cpuSound();
     this.isThinking = false;
   }
 

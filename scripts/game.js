@@ -2,6 +2,7 @@ import player from "./player.js";
 import cpuPlayer from "./cpuPlayer.js";
 import gameBoard from "./gameBoard.js";
 import displayController from "./displayController.js";
+import audio from "./audio.js";
 
 export default (() => {
   // General game variables
@@ -59,6 +60,13 @@ export default (() => {
         winMsg.innerHTML = `${
           this.turn === "X" ? this.playerX.getName() : this.playerO.getName()
         } [${this.turn}] WINS!`;
+
+        if (cpuOn && this.turn === "O") {
+          this.audio.loseSound();
+        } else {
+          this.audio.winSound();
+        }
+
         return this.winner;
       }
     }
@@ -67,6 +75,7 @@ export default (() => {
       this.winner = "tie";
       displayController.displayWinScreen();
       winMsg.innerHTML = "Tie game! Too bad!";
+      this.audio.tieSound();
       return this.winner;
     } else {
       return false;
@@ -99,8 +108,8 @@ export default (() => {
   }
 
   function start() {
+    this.audio = audio();
     displayController.displayPlayerInfo();
-    console.log("O name", this.playerO.getName());
     if (this.playerO.getName() !== "CPU") cpuOn = false;
     if (firstGame) {
       displayController.displayInitBoardState();
@@ -115,6 +124,7 @@ export default (() => {
   }
 
   return {
+    audio,
     start,
     reset,
     turn,

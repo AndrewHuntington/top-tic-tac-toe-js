@@ -39,6 +39,7 @@ export default (() => {
     if (cellText !== "X" && cellText !== "O") {
       if (!game.gameOver) {
         takeTurn(currentState, index);
+        game.audio.playerSound();
 
         if (game.playerO.isCPU) {
           // CPU chooses random squares
