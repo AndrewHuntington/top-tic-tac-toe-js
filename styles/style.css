@@ -13,6 +13,7 @@
   --board-size: 450px;
   --cell-size: calc(var(--board-size) / 3);
   --mark-size: calc(var(--cell-size) * 0.8);
+  --footer-height: 50px;
 }
 
 html {
@@ -59,8 +60,16 @@ h3 {
   font-weight: bold;
 }
 
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: white;
+}
+
 #welcome-screen {
-  height: 100vh;
+  height: calc(100vh - var(--footer-height));
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -69,7 +78,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - var(--footer-height));
   background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -118,9 +127,12 @@ h3 {
 }
 
 #board-border {
-  height: calc(var(--board-size) + 9px);
-  width: calc(var(--board-size) + 9px);
-  border: 4px white solid;
+  height: calc(var(--board-size));
+  width: calc(var(--board-size));
+  /* border: 4px white solid; */
+  box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
   border-radius: 3px;
 }
 
@@ -162,13 +174,8 @@ h3 {
   justify-content: center;
   align-items: center;
 
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  height: 100vh;
+  height: calc(100vh - var(--footer-height));
 }
 
 #turn-content {
@@ -245,6 +252,24 @@ h3 {
   background-color: white;
 }
 
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
+  height: var(--footer-height);
+  position: relative;
+}
+
+#footer-content {
+  display: flex;
+  justify-content: space-between;
+
+  height: 100%;
+  width: 900px;
+}
+
 .position-abs {
   position: absolute;
 }
@@ -254,7 +279,7 @@ h3 {
 }
 
 .board-square {
-  border: 3px solid black;
+  border: 3px solid rgba(35, 110, 54, 0.5);
   display: inline-block;
 
   height: var(--cell-size);
