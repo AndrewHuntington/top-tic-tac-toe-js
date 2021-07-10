@@ -1,6 +1,9 @@
 export default () => {
   const playerSound = () => {
-    const audio = new Audio("../sounds/player-move.mp3");
+    // const audio = new Audio("../sounds/player-move.mp3");
+    const audio = new Audio(
+      "https://github.com/AndrewHuntington/top-tic-tac-toe-js/raw/master/sounds/player-move.mp3"
+    );
     audio.play();
   };
 
