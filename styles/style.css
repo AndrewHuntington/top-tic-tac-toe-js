@@ -23,7 +23,7 @@ html {
 body {
   font-family: "Press Start 2P", cursive;
   margin: 0;
-  height: 100vh;
+  /* height: 100vh; */
   background-image: linear-gradient(
     darkgreen 35%,
     green 35%,
