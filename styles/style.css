@@ -129,7 +129,6 @@ a:hover {
 #board-border {
   height: calc(var(--board-size));
   width: calc(var(--board-size));
-  /* border: 4px white solid; */
   box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
   -webkit-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
@@ -331,4 +330,38 @@ a:hover {
 
 .invisible {
   display: none !important;
+}
+
+/** 
+  * About Page Styles
+**/
+
+#about-content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
+#about-content {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
+  border-radius: 3px;
+  padding: 1.5rem;
+  height: var(--board-size);
+  width: var(--board-size);
+}
+
+#footer-about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer-about #footer-content {
+  height: var(--footer-height);
+  position: absolute;
+  bottom: 0;
 }
