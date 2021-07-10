@@ -23,7 +23,7 @@ html {
 body {
   font-family: "Press Start 2P", cursive;
   margin: 0;
-  /* height: 100vh; */
+  height: 100vh;
   background-image: linear-gradient(
     darkgreen 35%,
     green 35%,
@@ -109,6 +109,16 @@ a:hover {
   text-align: center;
 }
 
+#player-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 15vh;
+  padding: 10px 0;
+}
+
 #player-display {
   margin-bottom: 0;
 }
@@ -118,6 +128,7 @@ a:hover {
   justify-content: center;
   margin: 10px 0 40px 0;
   width: 100vw;
+  height: 61vh;
 }
 
 #game-board {
@@ -133,16 +144,6 @@ a:hover {
   -webkit-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(35, 110, 54, 0.75);
   border-radius: 3px;
-}
-
-#player-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  height: 125px;
-  padding: 10px 0;
 }
 
 #start-btn-container {
@@ -259,6 +260,7 @@ a:hover {
   background-color: black;
   height: var(--footer-height);
   position: relative;
+  bottom: 0;
 }
 
 #footer-content {
@@ -340,7 +342,7 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 600px;
+  height: 90vh;
 }
 
 #about-content {
