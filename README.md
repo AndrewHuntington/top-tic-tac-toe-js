@@ -10,22 +10,24 @@ This is a tic tac toe game written in vanilla JavaScript. The user interface was
 
 - HTML5
 - CSS3
+- Bulma CSS
 - JavaScript
-- Others TBD
 
 ## Learning Objectives
 
 This project is from the JavaScript section of [The Odin Project](http://www.theodinproject.com). The main objective of this activity is to create a game while using as little global code as possible by implementing factory functions and modules.
 
-## Wish List
+## Things that could be improved
 
-- Allow the user the option of player vs. player or player vs. computer.
-- Add sound.
-- Come up with a pleasing interface so the games doesn't look awful and/or generic.
+- Implement a better computer AI with difficulty levels
+- Make more responsive
+- Refactor some of the code to make it less gnarly and easier to maintain
 
 ## Quirks, Oddities, Known Bugs, Etc.
 
-- TBD
+- Works best on a full screen browser on a computer
+- Adjusting the viewport to certain sizes will break the layout
+- Computer AI is rather stupid (picks squares at random)
 
 ## Misc.
 
